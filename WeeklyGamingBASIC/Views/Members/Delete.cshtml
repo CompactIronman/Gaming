@@ -1,0 +1,88 @@
+﻿@model WeeklyGamingBASIC.Models.Members
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Members</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.strFirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.strFirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.strLastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.strLastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.strSteamAccount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.strSteamAccount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.strBlizzardAccount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.strBlizzardAccount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.strEAAccount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.strEAAccount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.strThreeDSFriendCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.strThreeDSFriendCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.strMinecraftAccount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.strMinecraftAccount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.strLeagueOfLegendsAccount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.strLeagueOfLegendsAccount)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

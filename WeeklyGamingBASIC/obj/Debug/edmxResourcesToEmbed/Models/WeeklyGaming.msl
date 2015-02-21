@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="WeeklyGamingTGModelStoreContainer" CdmEntityContainer="WeeklyGamingTGEntities">
+    <EntitySetMapping Name="Games">
+      <EntityTypeMapping TypeName="WeeklyGamingTGModel.Game">
+        <MappingFragment StoreEntitySet="TBL_Game">
+          <ScalarProperty Name="intGameID" ColumnName="intGameID" />
+          <ScalarProperty Name="strGameName" ColumnName="strGameName" />
+          <ScalarProperty Name="intProviderID" ColumnName="intProviderID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Game_Members">
+      <EntityTypeMapping TypeName="WeeklyGamingTGModel.Game_Members">
+        <MappingFragment StoreEntitySet="TBL_Game_Members">
+          <ScalarProperty Name="intGameMemberID" ColumnName="intGameMemberID" />
+          <ScalarProperty Name="intGameID" ColumnName="intGameID" />
+          <ScalarProperty Name="intMemberID" ColumnName="intMemberID" />
+          <ScalarProperty Name="bitOwnGame" ColumnName="bitOwnGame" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Game_Providers">
+      <EntityTypeMapping TypeName="WeeklyGamingTGModel.Game_Providers">
+        <MappingFragment StoreEntitySet="TBL_Game_Providers">
+          <ScalarProperty Name="intProviderID" ColumnName="intProviderID" />
+          <ScalarProperty Name="strProviderName" ColumnName="strProviderName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Members">
+      <EntityTypeMapping TypeName="WeeklyGamingTGModel.Members">
+        <MappingFragment StoreEntitySet="TBL_Members">
+          <ScalarProperty Name="intMemberID" ColumnName="intMemberID" />
+          <ScalarProperty Name="strFirstName" ColumnName="strFirstName" />
+          <ScalarProperty Name="strLastName" ColumnName="strLastName" />
+          <ScalarProperty Name="strSteamAccount" ColumnName="strSteamAccount" />
+          <ScalarProperty Name="strBlizzardAccount" ColumnName="strBlizzardAccount" />
+          <ScalarProperty Name="strEAAccount" ColumnName="strEAAccount" />
+          <ScalarProperty Name="strThreeDSFriendCode" ColumnName="strThreeDSFriendCode" />
+          <ScalarProperty Name="strMinecraftAccount" ColumnName="strMinecraftAccount" />
+          <ScalarProperty Name="strLeagueOfLegendsAccount" ColumnName="strLeagueOfLegendsAccount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

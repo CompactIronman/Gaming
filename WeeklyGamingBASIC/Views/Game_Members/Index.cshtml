@@ -1,0 +1,58 @@
+﻿@model IEnumerable<WeeklyGamingBASIC.Models.Game_Members>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+    @using (Html.BeginForm("Index", "Game_Members", FormMethod.Get))
+    {
+    <p>
+        @*Games*@
+        Select Game: @Html.DropDownList("GameName", "All")
+        Search By Game: @Html.TextBox("searchGameString")
+        <br/>
+        @*Players*@
+        Select Name: @Html.DropDownList("PlayersName", "All")
+        Player First Name: @Html.TextBox("searchMemberString") 
+        <input type="submit" value="Filter" />
+    </p>
+    }
+    
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.bitOwnGame)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Game.strGameName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Members.strFullName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.bitOwnGame)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Game.strGameName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Members.strFullName)
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.intGameMemberID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.intGameMemberID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.intGameMemberID })
+        </td>
+    </tr>
+}
+
+</table>

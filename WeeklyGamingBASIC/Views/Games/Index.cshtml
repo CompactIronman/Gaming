@@ -1,0 +1,39 @@
+﻿@model IEnumerable<WeeklyGamingBASIC.Models.Game>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.strGameName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Game_Providers.strProviderName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.strGameName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Game_Providers.strProviderName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.intGameID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.intGameID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.intGameID })
+        </td>
+    </tr>
+}
+
+</table>

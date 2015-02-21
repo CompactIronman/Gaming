@@ -1,0 +1,42 @@
+﻿@model WeeklyGamingBASIC.Models.Game_Members
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Game_Members</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.bitOwnGame)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bitOwnGame)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Game.strGameName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Game.strGameName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Members.strFirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Members.strFirstName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.intGameMemberID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

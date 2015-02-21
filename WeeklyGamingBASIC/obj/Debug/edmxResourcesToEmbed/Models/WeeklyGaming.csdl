@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WeeklyGamingTGModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Game">
+    <Key>
+      <PropertyRef Name="intGameID" />
+    </Key>
+    <Property Name="intGameID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="strGameName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="intProviderID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Game_Members" Relationship="Self.TBL_Game_Members_TBL_Game_FK" FromRole="TBL_Game" ToRole="TBL_Game_Members" />
+    <NavigationProperty Name="Game_Providers" Relationship="Self.TBL_Game_TBL_Game_Providers_FK" FromRole="TBL_Game" ToRole="TBL_Game_Providers" />
+  </EntityType>
+  <EntityType Name="Game_Members">
+    <Key>
+      <PropertyRef Name="intGameMemberID" />
+    </Key>
+    <Property Name="intGameMemberID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="intGameID" Type="Int32" Nullable="false" />
+    <Property Name="intMemberID" Type="Int32" Nullable="false" />
+    <Property Name="bitOwnGame" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Game" Relationship="Self.TBL_Game_Members_TBL_Game_FK" FromRole="TBL_Game_Members" ToRole="TBL_Game" />
+    <NavigationProperty Name="Members" Relationship="Self.TBL_Game_Members_TBL_Members_FK" FromRole="TBL_Game_Members" ToRole="TBL_Members" />
+  </EntityType>
+  <EntityType Name="Game_Providers">
+    <Key>
+      <PropertyRef Name="intProviderID" />
+    </Key>
+    <Property Name="intProviderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="strProviderName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Game" Relationship="Self.TBL_Game_TBL_Game_Providers_FK" FromRole="TBL_Game_Providers" ToRole="TBL_Game" />
+  </EntityType>
+  <EntityType Name="Members">
+    <Key>
+      <PropertyRef Name="intMemberID" />
+    </Key>
+    <Property Name="intMemberID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="strFirstName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="strLastName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="strSteamAccount" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="strBlizzardAccount" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="strEAAccount" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="strThreeDSFriendCode" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="strMinecraftAccount" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="strLeagueOfLegendsAccount" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Game_Members" Relationship="Self.TBL_Game_Members_TBL_Members_FK" FromRole="TBL_Members" ToRole="TBL_Game_Members" />
+  </EntityType>
+  <Association Name="TBL_Game_Members_TBL_Game_FK">
+    <End Role="TBL_Game" Type="WeeklyGamingTGModel.Game" Multiplicity="1" />
+    <End Role="TBL_Game_Members" Type="WeeklyGamingTGModel.Game_Members" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_Game">
+        <PropertyRef Name="intGameID" />
+      </Principal>
+      <Dependent Role="TBL_Game_Members">
+        <PropertyRef Name="intGameID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TBL_Game_TBL_Game_Providers_FK">
+    <End Role="TBL_Game_Providers" Type="WeeklyGamingTGModel.Game_Providers" Multiplicity="1" />
+    <End Role="TBL_Game" Type="WeeklyGamingTGModel.Game" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_Game_Providers">
+        <PropertyRef Name="intProviderID" />
+      </Principal>
+      <Dependent Role="TBL_Game">
+        <PropertyRef Name="intProviderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TBL_Game_Members_TBL_Members_FK">
+    <End Role="TBL_Members" Type="WeeklyGamingTGModel.Members" Multiplicity="1" />
+    <End Role="TBL_Game_Members" Type="WeeklyGamingTGModel.Game_Members" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_Members">
+        <PropertyRef Name="intMemberID" />
+      </Principal>
+      <Dependent Role="TBL_Game_Members">
+        <PropertyRef Name="intMemberID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="WeeklyGamingTGEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Games" EntityType="WeeklyGamingTGModel.Game" />
+    <EntitySet Name="Game_Members" EntityType="WeeklyGamingTGModel.Game_Members" />
+    <EntitySet Name="Game_Providers" EntityType="WeeklyGamingTGModel.Game_Providers" />
+    <EntitySet Name="Members" EntityType="WeeklyGamingTGModel.Members" />
+    <AssociationSet Name="TBL_Game_Members_TBL_Game_FK" Association="Self.TBL_Game_Members_TBL_Game_FK">
+      <End Role="TBL_Game" EntitySet="Games" />
+      <End Role="TBL_Game_Members" EntitySet="Game_Members" />
+    </AssociationSet>
+    <AssociationSet Name="TBL_Game_TBL_Game_Providers_FK" Association="Self.TBL_Game_TBL_Game_Providers_FK">
+      <End Role="TBL_Game_Providers" EntitySet="Game_Providers" />
+      <End Role="TBL_Game" EntitySet="Games" />
+    </AssociationSet>
+    <AssociationSet Name="TBL_Game_Members_TBL_Members_FK" Association="Self.TBL_Game_Members_TBL_Members_FK">
+      <End Role="TBL_Members" EntitySet="Members" />
+      <End Role="TBL_Game_Members" EntitySet="Game_Members" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

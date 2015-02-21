@@ -1,0 +1,82 @@
+﻿@model WeeklyGamingBASIC.Models.Members
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Members</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.strFirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.strFirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.strLastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.strLastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.strSteamAccount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.strSteamAccount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.strBlizzardAccount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.strBlizzardAccount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.strEAAccount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.strEAAccount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.strThreeDSFriendCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.strThreeDSFriendCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.strMinecraftAccount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.strMinecraftAccount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.strLeagueOfLegendsAccount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.strLeagueOfLegendsAccount)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.intMemberID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

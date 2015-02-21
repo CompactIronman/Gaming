@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WeeklyGamingTGModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="TBL_Game">
+    <Key>
+      <PropertyRef Name="intGameID" />
+    </Key>
+    <Property Name="intGameID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="strGameName" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="intProviderID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TBL_Game_Members">
+    <Key>
+      <PropertyRef Name="intGameMemberID" />
+    </Key>
+    <Property Name="intGameMemberID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="intGameID" Type="int" Nullable="false" />
+    <Property Name="intMemberID" Type="int" Nullable="false" />
+    <Property Name="bitOwnGame" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TBL_Game_Providers">
+    <Key>
+      <PropertyRef Name="intProviderID" />
+    </Key>
+    <Property Name="intProviderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="strProviderName" Type="nvarchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TBL_Members">
+    <Key>
+      <PropertyRef Name="intMemberID" />
+    </Key>
+    <Property Name="intMemberID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="strFirstName" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="strLastName" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="strSteamAccount" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="strBlizzardAccount" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="strEAAccount" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="strThreeDSFriendCode" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="strMinecraftAccount" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="strLeagueOfLegendsAccount" Type="nvarchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <Association Name="TBL_Game_Members_TBL_Game_FK">
+    <End Role="TBL_Game" Type="Self.TBL_Game" Multiplicity="1" />
+    <End Role="TBL_Game_Members" Type="Self.TBL_Game_Members" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_Game">
+        <PropertyRef Name="intGameID" />
+      </Principal>
+      <Dependent Role="TBL_Game_Members">
+        <PropertyRef Name="intGameID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TBL_Game_Members_TBL_Members_FK">
+    <End Role="TBL_Members" Type="Self.TBL_Members" Multiplicity="1" />
+    <End Role="TBL_Game_Members" Type="Self.TBL_Game_Members" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_Members">
+        <PropertyRef Name="intMemberID" />
+      </Principal>
+      <Dependent Role="TBL_Game_Members">
+        <PropertyRef Name="intMemberID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TBL_Game_TBL_Game_Providers_FK">
+    <End Role="TBL_Game_Providers" Type="Self.TBL_Game_Providers" Multiplicity="1" />
+    <End Role="TBL_Game" Type="Self.TBL_Game" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_Game_Providers">
+        <PropertyRef Name="intProviderID" />
+      </Principal>
+      <Dependent Role="TBL_Game">
+        <PropertyRef Name="intProviderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="WeeklyGamingTGModelStoreContainer">
+    <EntitySet Name="TBL_Game" EntityType="Self.TBL_Game" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_Game_Members" EntityType="Self.TBL_Game_Members" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_Game_Providers" EntityType="Self.TBL_Game_Providers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_Members" EntityType="Self.TBL_Members" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="TBL_Game_Members_TBL_Game_FK" Association="Self.TBL_Game_Members_TBL_Game_FK">
+      <End Role="TBL_Game" EntitySet="TBL_Game" />
+      <End Role="TBL_Game_Members" EntitySet="TBL_Game_Members" />
+    </AssociationSet>
+    <AssociationSet Name="TBL_Game_Members_TBL_Members_FK" Association="Self.TBL_Game_Members_TBL_Members_FK">
+      <End Role="TBL_Members" EntitySet="TBL_Members" />
+      <End Role="TBL_Game_Members" EntitySet="TBL_Game_Members" />
+    </AssociationSet>
+    <AssociationSet Name="TBL_Game_TBL_Game_Providers_FK" Association="Self.TBL_Game_TBL_Game_Providers_FK">
+      <End Role="TBL_Game_Providers" EntitySet="TBL_Game_Providers" />
+      <End Role="TBL_Game" EntitySet="TBL_Game" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
